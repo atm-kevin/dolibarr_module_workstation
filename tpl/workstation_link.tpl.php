@@ -2,13 +2,13 @@
 	[view.liste;strconv=no]
 
 	<div class="tabsAction">
-			<input class="butAction" type="submit" value="Enregistrer" name="bt_save" />
-			<a href="#" class="butAction btnaddworkstation">Ajouter un poste</a>
+			<input class="butAction" type="submit" value="[langs.transnoentitiesnoconv(Save)]" name="bt_save" />
+			<a href="#" class="butAction btnaddworkstation">[langs.transnoentitiesnoconv(AddWS)]</a>
 	</div>
-	<div id="dialog-workstation" title="Ajout d'un poste de travail"  style="display:none;">
+	<div id="dialog-workstation" title="[langs.transnoentitiesnoconv(AddingWS)]"  style="display:none;">
 		<table>
 			<tr>
-				<td>Postes de travail : </td>
+				<td>[langs.transnoentitiesnoconv(WorkStations)] : </td>
 				<td>
 					[view.select_workstation;strconv=no]
 				</td>
@@ -26,10 +26,10 @@
 					},
 					modal:true,
 					buttons: {
-						"Annuler": function() {
+						"[langs.transnoentitiesnoconv(Cancel)]": function() {
 							$( this ).dialog( "close" );
 						},				
-						"Ajouter": function(){
+						"[langs.transnoentitiesnoconv(Add)]": function(){
 							
 							var fk_workstation = $('#fk_workstation').val();
 							

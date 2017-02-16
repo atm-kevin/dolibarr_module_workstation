@@ -9,8 +9,10 @@ WorkstationAbout = About Workstation
 WorkStation=Workstation
 NewWorkStation=New workstation
 WorkStations=Workstations
-ListOFWSs=List of workstations
+ListOfWSs=List of workstations
 NoWSToDisplay=There are no workstations to display
+AddWS=Add a workstation
+AddingWS=Adding a workstation
 
 WorkstationMsgDeleteTask=Task deleted
 WorkstationErrDeleteTask=Error when deleting task
@@ -18,16 +20,23 @@ WorkstationMsgSaveTask=Task saved
 WorkstationErrSaveTask=Error when saving task
 paramWORKSTATION_LINK_SUBPRODUCT=Allow linking workstations to sub-products
 paramWORKSTATION_TRANCHE_HORAIRE_THM_NUIT=Time slot used for night average hourly wage, start time - end time (24-hour HHmm format). Example for start at 8 PM and end at 6 AM => 2000-0600
-WSScheduleList=List of time periods with no work on this station
+WSScheduleList=List of time periods not worked on this station
 AllDay=All day
 ScheduleDeleted=Schedule deleted
 
 WSCode=Code (optional)
 WSUsergroup=Usergroup
 WSType=Type
+WSHumanType=Human (+ Machine)
+WSMachineType=Machine
 WSMaxNbHours=Maximum number of hours
 WSNbHoursBeforeProd=Number of hours before production
 WSNbHoursAfterProd=Number of hours after production
+WSNbHoursPreparation=Number of hours of preparation
+WSNbHoursProduction=Number of hours of production
+WSNbHoursTotal=Total number of hours
+WSRank=Rank
+WSSoVelocityIs=so velocity is
 WSNbResourcesAvailable=Number of available resources
 WSAverageHourlyRate=Average hourly wage
 WSOvertimeAverageHourlyRate=Overtime average hourly wage

@@ -211,7 +211,7 @@
 	llxFooter();
 
 function _liste_link(&$PDOdb, $fk_product) {
-	global $db,$langs,$conf, $user;	
+	global $db, $langs, $conf, $user;	
 	
 	if($fk_product>0){
 		if(is_file(DOL_DOCUMENT_ROOT."/lib/product.lib.php")) require_once(DOL_DOCUMENT_ROOT."/lib/product.lib.php");
@@ -255,21 +255,29 @@ function _liste_link(&$PDOdb, $fk_product) {
 			,'action'=> '<a href="workstation.php?action=delete&fk_product='.$fk_product.'&id_wsp=@id@">'.img_picto($langs->trans('Delete'), 'delete.png').'</a>'
 		)
 		,'title'=>array(
-			'nb_hour_prepare'=>"Nombre d'heures de préparation"
-			,'nb_hour_manufacture'=>"Nombre d'heures de fabrication"
-			,'nb_hour'=>"Nombre d'heures totale"
-			,'rang'=>"Rang"
+			'nb_hour_prepare'=>$langs->trans('WSNbHoursPreparation')
+			,'nb_hour_manufacture'=>$langs->trans("WSNbHoursProduction")
+			,'nb_hour'=>$langs->trans("WSNbHoursTotal")
+			,'rang'=>$langs->trans('WSRank')
+			,'action'=>$langs->trans('WSAction')
+			,'name'=>$langs->trans('Label')
+			,'id'=>'ID'
 		)
 		,'hide'=>array('id_ws')
+		,'liste'=>array(
+			'titre'=>$langs->trans('ListOfWSs')
+			,'messageNothing'=>$langs->trans('NoWSToDisplay')
+		)
 	));
 	
 	$TBS=new TTemplateTBS;
 	
-    
+
 	print $TBS->render('./tpl/workstation_link.tpl.php',
 		array()
 		,array(
-			'view'=>array(
+			'langs'=>$langs
+			,'view'=>array(
 				'mode'=>$mode
 				,'liste'=>$liste
 				,'select_workstation'=>$form->combo('', 'fk_workstation', TWorkstation::getWorstations($PDOdb), -1)
@@ -278,7 +286,7 @@ function _liste_link(&$PDOdb, $fk_product) {
 		)
 		
 	);
-    
+
     if($conf->global->WORKSTATION_LINK_SUBPRODUCT && $fk_product>0) {
             _fiche_sub_product($PDOdb, $product);
         
@@ -366,7 +374,7 @@ function _fiche(&$PDOdb, &$ws, $mode='view', $editTask=false) {
 		,'thm_night'=>$form->texte('', 'thm_night', $ws->thm_night,5,5)
 		,'nb_hour_before'=>$form->texte('', 'nb_hour_before', $ws->nb_hour_before,3,5)
 		,'nb_hour_after'=>$form->texte('', 'nb_hour_after', $ws->nb_hour_after,3,5)
-        ,'nb_hour_capacity'=>$form->texte('', 'nb_hour_capacity', $ws->nb_hour_capacity,3,3).(($mode=='view') ? "h, soit une vélocité de ".round($ws->nb_hour_capacity / $hour_per_day,2) :''  )
+        ,'nb_hour_capacity'=>$form->texte('', 'nb_hour_capacity', $ws->nb_hour_capacity,3,3).(($mode=='view') ? "h, ".$langs->trans("WSSoVelocityIs")." ".round($ws->nb_hour_capacity / $hour_per_day,2) :''  )
 		//,'nb_hour_capacity'=>(int) $ws->nb_hour_capacity.(($mode=='view') ? "h, soit une vélocité de ".round($ws->nb_hour_capacity / $hour_per_day,2) :''  )
 		,'nb_ressource'=>$form->texte('', 'nb_ressource', $ws->nb_ressource,3,3)
     	,'background'=>$background
@@ -459,7 +467,7 @@ function _liste_task(&$ws)
                 'id'=>$task->getId()
                 ,'libelle'=>$task->libelle
                 ,'description'=>$task->description
-                ,'action'=>'<a href="?id='.$ws->getId().'&action=editTask&id_task='.$task->getId().'">'.img_picto('Modifier', 'edit.png').'</a>&nbsp;&nbsp;<a onclick=\'if (!confirm("Confirmez-vous la suppression ?")) return false;\' href="?id='.$ws->getId().'&action=deleteTask&id_task='.$task->getId().'">'.img_picto('Supprimer', 'delete.png').'</a>'
+                ,'action'=>'<a href="?id='.$ws->getId().'&action=editTask&id_task='.$task->getId().'">'.img_picto($langs->trans('Modify'), 'edit.png').'</a>&nbsp;&nbsp;<a onclick=\'if (!confirm("Confirmez-vous la suppression ?")) return false;\' href="?id='.$ws->getId().'&action=deleteTask&id_task='.$task->getId().'">'.img_picto('Supprimer', 'delete.png').'</a>'
             );
         }
         
@@ -517,8 +525,8 @@ function _liste(&$PDOdb) {
 			'name'=>'<a href="?action=view&id=@id@">@val@</a>'
 		)
 		,'title'=>array(
-			'nb_hour_prepare'=>$langs->trans("WSNbHoursBeforeProd"),
-			'nb_hour_manufacture'=>$langs->trans("WSNbHoursAfterProd"),
+			'nb_hour_prepare'=>$langs->trans("WSNbHoursPreparation"),
+			'nb_hour_manufacture'=>$langs->trans("WSNbHoursProduction"),
 			'nb_hour_capacity'=>$langs->trans("WSMaxNbHours"),
 			'nb_ressource'=>$langs->trans("WSNbResourcesAvailable"),
 			'id'=>"ID",
