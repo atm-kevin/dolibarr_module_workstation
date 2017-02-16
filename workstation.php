@@ -25,7 +25,7 @@
 				
 				if (!$fk_workstation) 
 				{
-					setEventMessage('Aucun poste de travail séléctionné', 'errors');
+					setEventMessage($langs->trans('NoWSSelected'), 'errors');
 					_liste_link($PDOdb, $fk_product);
 					break;
 				}
@@ -43,7 +43,7 @@
 				
 				$wsp->save($PDOdb);
 			
-				setEventMessage('Poste de travail ajouté');
+				setEventMessage($langs->trans('WSAdded'));
 			
 				_liste_link($PDOdb, $fk_product);
 				
@@ -70,7 +70,7 @@
 					$wsp->save($PDOdb);
 				}
 				
-				setEventMessage('Modifications enregistrées');
+				setEventMessage($langs->trans('WSModificationsSaved'));
 				
 				_liste_link($PDOdb, $fk_product);
 				break;
@@ -125,7 +125,7 @@
                 
                 $ws->save($PDOdb);
                 
-                setEventMessage('ScheduleDeleted');
+                setEventMessage($langs->trans('ScheduleDeleted'));
                 
                 _fiche($PDOdb, $ws,'edit');
                 
@@ -252,7 +252,7 @@ function _liste_link(&$PDOdb, $fk_product) {
 			,'nb_hour_manufacture'=>'<input type="text" name="TWorkstationProduct[@id@][nb_hour_manufacture]" value="@val@" size="5" />'
 			//,'nb_hour'=>'<input type="text" name="TWorkstationProduct[@id@][nb_hour]" value="@val@" size="5" />'
 			,'nb_hour'=>'@val@'
-			,'action'=> '<a href="workstation.php?action=delete&fk_product='.$fk_product.'&id_wsp=@id@">'.img_picto('Supprimer', 'delete.png').'</a>'
+			,'action'=> '<a href="workstation.php?action=delete&fk_product='.$fk_product.'&id_wsp=@id@">'.img_picto($langs->trans('Delete'), 'delete.png').'</a>'
 		)
 		,'title'=>array(
 			'nb_hour_prepare'=>"Nombre d'heures de préparation"
@@ -390,7 +390,8 @@ function _fiche(&$PDOdb, &$ws, $mode='view', $editTask=false) {
 			,'TWorkstationSchedule'=>$TWorkstationSchedule
 		),
 		array(
-			'ws'=>$TForm
+			'langs'=>$langs
+			,'ws'=>$TForm
 			,'formTask'=>$TFormTask
 			,'view'=>array(
 				'mode'=>$mode
@@ -440,7 +441,7 @@ function _fiche_schedule(&$form, &$ws) {
             ,'week_day'=>$form->combo('', 'TWorkstationSchedule[-1][week_day]', $sc->TWeekDay , -1)
             ,'day_moment'=>$form->combo('', 'TWorkstationSchedule[-1][day_moment]', $sc->TDayMoment , 'ALL')
             ,'nb_ressource'=>$form->texte('', 'TWorkstationSchedule[-1][nb_ressource]', 0 , 3,3)
-            ,'action'=>'Nouveau'
+            ,'action'=>$langs->trans('New')
         );
     }
 
@@ -516,21 +517,21 @@ function _liste(&$PDOdb) {
 			'name'=>'<a href="?action=view&id=@id@">@val@</a>'
 		)
 		,'title'=>array(
-			'nb_hour_prepare'=>"Nombre d'heure de preparation",
-			'nb_hour_manufacture'=>"Nombre d'heure de fabrication",
-			'nb_hour_capacity'=>"Nombre d'heure maximum",
-			'nb_ressource'=>'Nombre de ressource disponible',
-			'id'=>"Id",
-			'name'=>"Intitulé poste de travail",
-			'fk_usergroup'=>"Groupe"
+			'nb_hour_prepare'=>$langs->trans("WSNbHoursBeforeProd"),
+			'nb_hour_manufacture'=>$langs->trans("WSNbHoursAfterProd"),
+			'nb_hour_capacity'=>$langs->trans("WSMaxNbHours"),
+			'nb_ressource'=>$langs->trans("WSNbResourcesAvailable"),
+			'id'=>"ID",
+			'name'=>$langs->trans("Label"),
+			'fk_usergroup'=>$langs->trans("WSUsergroup")
 		)
 		,'liste'=>array(
-			'titre'=>'Liste des '.$langs->trans('WorkStation')
+			'titre'=>$langs->trans('ListOfWSs')
 			,'image'=>img_picto('','title.png', '', 0)
 			,'picto_precedent'=>img_picto('','back.png', '', 0)
 			,'picto_suivant'=>img_picto('','next.png', '', 0)
 			,'noheader'=> (int)isset($_REQUEST['fk_soc']) | (int)isset($_REQUEST['fk_product'])
-			,'messageNothing'=>"Il n'y a aucun ".$langs->trans('WorkStation')." à afficher"
+			,'messageNothing'=>$langs->trans('NoWSToDisplay')
 			,'picto_search'=>img_picto('','search.png', '', 0)
 		)
 	

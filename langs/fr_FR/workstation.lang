@@ -1,5 +1,5 @@
 Module104320Name = Poste de travail
-Module104320Desc = Permet de définir des postes de travails/charges utilisés par le module GPAO
+Module104320Desc = Permet de définir des postes de travail/charges utilisés par le module OF
 
 ATMAbout = Ce module a été développé par <a href="http://www.atm-consulting.fr" target="_blank">ATM Consulting</a><br>Vous pouvez retrouver la documentation sur notre <a href="http://wiki.atm-consulting.fr/index.php/Accueil" target="_blank">wiki</a><br><br>Pour toute question technique ou retour, contactez-nous sur <a href="mailto:support@atm-consulting.fr">support@atm-consulting.fr</a><br><br>Pour toute question commerciale, contactez-nous sur <a href="mailto:contact@atm-consulting.fr">contact@atm-consulting.fr</a> ou au +33 9 77 19 50 70<br><br>Retrouvez nos autres modules sur <a href="http://www.dolistore.com/search.php?orderby=position&orderway=desc&search_query=atm&submit_search=Rechercher" target="_blank">Dolistore</a>
 
@@ -9,13 +9,44 @@ WorkstationAbout = A propos du module Workstation
 WorkStation=Poste de travail
 NewWorkStation=Nouveau poste de travail
 WorkStations=Postes de travail
+ListOFWSs=Liste des postes de travail
+NoWSToDisplay=Il n'y a aucun poste de travail à afficher
 
 WorkstationMsgDeleteTask=Tâche supprimée
 WorkstationErrDeleteTask=Erreur lors de la suppression
 WorkstationMsgSaveTask=Tâche enregistrée
 WorkstationErrSaveTask=Erreur lors de l'enregistrement
-paramWORKSTATION_LINK_SUBPRODUCT=Permettre la liaison des sous-produit aux postes de travail
+paramWORKSTATION_LINK_SUBPRODUCT=Permettre la liaison des sous-produits aux postes de travail
 paramWORKSTATION_TRANCHE_HORAIRE_THM_NUIT=Tranche horaire pour prise en compte du THM nuit, heure début - heure fin (format HHmm). Exemple pour début 20H et fin 6H => 2000-0600
 WSScheduleList=Liste des temps non travaillés du poste
-AllDay=La journée
-ScheduleDeleted=Plannification supprimée
+AllDay=Toute la journée
+ScheduleDeleted=Planification supprimée
+
+WSCode=Code (facultatif)
+WSUsergroup=Groupe d'utilisateurs
+WSType=Type
+WSMaxNbHours=Nombre d'heures maximal
+WSNbHoursBeforeProd=Nombre d'heures avant production
+WSNbHoursAfterProd=Nombre d'heures après production
+WSNbResourcesAvailable=Nombre de ressources disponibles
+WSAverageHourlyRate=THM
+WSOvertimeAverageHourlyRate=THM heures supplémentaires
+WSNightWeekEndAverageHourlyRate=THM de nuit ou week-end
+WSMachineAverageHourlyRate=THM Machine
+WSColumnColor=Couleur de colonne
+DeleteWSConfirmMsg=Voulez-vous supprimer cet élément ?
+WSOrDayOfWeek=Ou jour de la semaine
+WSMomentOfTheDay=Période de la journée
+WSNumberOfUnavailableResources=Nombre de ressources indisponibles
+WSNoTimePlanned=Aucun temps planifié
+
+WSTask=Tâche
+WSAssociatedTasks=Tâches associés
+WSAddTask=Ajouter une tâche
+WSModifyTask=Modifier la tâche
+WSAction=Action
+WSNoTaskAssociated=Aucune tâche associée
+
+NoWSSelected=Aucun poste de travail séléctionné
+WSAdded=Poste de travail ajouté
+WSModificationsSaved=Modifications enregistrées

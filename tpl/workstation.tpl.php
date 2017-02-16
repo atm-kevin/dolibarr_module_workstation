@@ -1,30 +1,30 @@
 
 <div>
 	<table width="100%" class="border">
-		<tr><td width="20%">Libellé</td><td>[ws.name; strconv=no]</td></tr>
-		<tr><td width="20%">Code (facultatif)</td><td>[ws.code; strconv=no]</td></tr>
-		<tr><td width="20%">[onshow;block=tr;when [view.isMachine]==0]Groupe d'utilisateurs</td><td>[ws.fk_usergroup; strconv=no]</td></tr>
-		<tr><td width="20%">Type</td><td>[ws.type; strconv=no]</td></tr>
-		<tr><td width="20%">Nombre d'heures maximales</td><td>[ws.nb_hour_capacity; strconv=no]</td></tr>
-		<tr><td>Nombre d'heures avant production</td><td>[ws.nb_hour_before; strconv=no]h</td></tr>
-		<tr><td>Nombre d'heures après production</td><td>[ws.nb_hour_after; strconv=no]h</td></tr>
+		<tr><td width="20%">[langs.transnoentitiesnoconv(Label)]</td><td>[ws.name; strconv=no]</td></tr>
+		<tr><td width="20%">[langs.transnoentitiesnoconv(WSCode)]</td><td>[ws.code; strconv=no]</td></tr>
+		<tr><td width="20%">[onshow;block=tr;when [view.isMachine]==0][langs.transnoentitiesnoconv(WSUsergroup)]</td><td>[ws.fk_usergroup; strconv=no]</td></tr>
+		<tr><td width="20%">[langs.transnoentitiesnoconv(WSType)]</td><td>[ws.type; strconv=no]</td></tr>
+		<tr><td width="20%">[langs.transnoentitiesnoconv(WSMaxNbHours)]</td><td>[ws.nb_hour_capacity; strconv=no]</td></tr>
+		<tr><td>[langs.transnoentitiesnoconv(WSNbHoursBeforeProd)]</td><td>[ws.nb_hour_before; strconv=no]h</td></tr>
+		<tr><td>[langs.transnoentitiesnoconv(WSNbHoursAfterProd)]</td><td>[ws.nb_hour_after; strconv=no]h</td></tr>
 
 
-	    <tr><td width="20%">Nombre de ressources disponibles</td><td>[ws.nb_ressource; strconv=no]</td></tr>
-        <tr><td>[onshow;block=tr;when [view.isMachine]==0]THM</td><td>[ws.thm; strconv=no]</td></tr>
-        <tr><td>[onshow;block=tr;when [view.isMachine]==0]THM heures supplémentaires</td><td>[ws.thm_overtime; strconv=no]</td></tr>
-        <tr><td>[onshow;block=tr;when [view.isMachine]==0]THM de nuit ou week-end</td><td>[ws.thm_night; strconv=no]</td></tr>
-        <tr><td width="20%">THM Machine</td><td>[ws.thm_machine; strconv=no]</td></tr>
-        <tr><td width="20%">Couleur de colonne</td><td>[ws.background; strconv=no]</td></tr>
+	    <tr><td width="20%">[langs.transnoentitiesnoconv(WSNbResourcesAvailable)]</td><td>[ws.nb_ressource; strconv=no]</td></tr>
+        <tr><td>[onshow;block=tr;when [view.isMachine]==0][langs.transnoentitiesnoconv(WSAverageHourlyRate)]</td><td>[ws.thm; strconv=no]</td></tr>
+        <tr><td>[onshow;block=tr;when [view.isMachine]==0][langs.transnoentitiesnoconv(WSOvertimeAverageHourlyRate)]</td><td>[ws.thm_overtime; strconv=no]</td></tr>
+        <tr><td>[onshow;block=tr;when [view.isMachine]==0][langs.transnoentitiesnoconv(WSNightWeekEndAverageHourlyRate)]</td><td>[ws.thm_night; strconv=no]</td></tr>
+        <tr><td width="20%">[langs.transnoentitiesnoconv(WSMachineAverageHourlyRate)]</td><td>[ws.thm_machine; strconv=no]</td></tr>
+        <tr><td width="20%">[langs.transnoentitiesnoconv(WSColumnColor)]</td><td>[ws.background; strconv=no]</td></tr>
 	</table>
 </div>
 
 
 [onshow;block=begin;when [view.mode]!='edit']
     <div class="tabsAction">
-        <a href="?id=[ws.id]&action=edit" class="butAction">Modifier</a>
+        <a href="?id=[ws.id]&action=edit" class="butAction">[langs.transnoentitiesnoconv(Modify)]</a>
         <span class="butActionDelete" id="action-delete"  
-        onclick="if (window.confirm('Voulez vous supprimer l\'élément ?')){document.location.href='?id=[ws.id]&action=delete'};">Supprimer</span>
+        onclick="if (window.confirm('[langs.transnoentitiesnoconv(DeleteWSConfirmMsg)]')){document.location.href='?id=[ws.id]&action=delete'};">[langs.transnoentitiesnoconv(Delete)]</span>
     </div>
 [onshow;block=end]  
 
@@ -32,10 +32,10 @@
 <div style="margin-top:15px;">
     <table width="100%" class="border">     
         <tr class="liste_titre">
-            <th align="left" width="10%">Date</th>
-            <th>Ou jour de la semaine</th>
-            <th>Période de la journée</th>
-            <th>Nombre de ressource indisponible</th>
+            <th align="left" width="10%">[langs.transnoentitiesnoconv(Date)]</th>
+            <th>[langs.transnoentitiesnoconv(WSOrDayOfWeek)]</th>
+            <th>[langs.transnoentitiesnoconv(WSMomentOfTheDay)]</th>
+            <th>[langs.transnoentitiesnoconv(WSNumberOfUnavailableResources)]</th>
             <th>&nbsp;</th>
         </tr>
         
@@ -48,7 +48,7 @@
         </tr>
         
         <tr>
-            <td colspan="4" align="center">[TWorkstationSchedule;block=tr;nodata]Aucun temps plannifié</td>
+            <td colspan="4" align="center">[TWorkstationSchedule;block=tr;nodata][langs.transnoentitiesnoconv(WSNoTimePlanned)]</td>
         </tr>
     </table>    
 </div>
@@ -57,8 +57,8 @@
 
 [onshow;block=begin;when [view.mode]=='edit']
     <div class="tabsAction" style="text-align:center;">
-        <input type="submit" value="Enregistrer" name="save" class="button"> 
-        &nbsp; &nbsp; <input type="button" value="Annuler" name="cancel" class="button" onclick="document.location.href='?action=view&id=[ws.id]'">
+        <input type="submit" value="[langs.transnoentitiesnoconv(Save)]" name="save" class="button"> 
+        &nbsp; &nbsp; <input type="button" value="[langs.transnoentitiesnoconv(Cancel)]" name="cancel" class="button" onclick="document.location.href='?action=view&id=[ws.id]'">
     </div>
 [onshow;block=end]
 
@@ -72,14 +72,14 @@
 				<input type="hidden" name="id_task" value="[formTask.id_task;noerr]" />
 				-->
 				<table width="100%" class="border">
-					<tr><th align="left" colspan="2">[formTask.id_task;noerr;if [val]==0;then 'Ajouter une tâche';else 'Modifier la tâche']</th></tr>
-					<tr><td>Libellé</td><td><input size="45" type="text" name="libelle" value="[formTask.libelle;noerr;strconv=no]" /></td></tr>
-					<tr><td>Description</td><td><textarea cols="45" rows="3" name="description">[formTask.description;noerr;strconv=no]</textarea></td></tr>
+					<tr><th align="left" colspan="2">[formTask.id_task;noerr;if [val]==0;then '[langs.transnoentitiesnoconv(WSAddTask)]';else '[langs.transnoentitiesnoconv(WSModifyTask)]']</th></tr>
+					<tr><td>[langs.transnoentitiesnoconv(Label)]</td><td><input size="45" type="text" name="libelle" value="[formTask.libelle;noerr;strconv=no]" /></td></tr>
+					<tr><td>[langs.transnoentitiesnoconv(Description)]</td><td><textarea cols="45" rows="3" name="description">[formTask.description;noerr;strconv=no]</textarea></td></tr>
 				</table>
 				
 				<div class="tabsAction" style="text-align:center;">
-					<input class="button" type="submit" value="Enregistrer" />
-					<a style="font-weight:normal;text-decoration:none" href="?action=view&id=[ws.id]" class="button">Annuler</a>
+					<input class="button" type="submit" value="[langs.transnoentitiesnoconv(Save)]" />
+					<a style="font-weight:normal;text-decoration:none" href="?action=view&id=[ws.id]" class="button">[langs.transnoentitiesnoconv(Cancel)]</a>
 				</div>
 			<!-- </form> -->
 		</div>
@@ -90,12 +90,12 @@
 	<div style="margin-top:15px;">
 		<table width="100%" class="border">		
 			<tr height="40px;">
-				<td colspan="4">&nbsp;&nbsp;<b>Tâches associés</b></td>
+				<td colspan="4">&nbsp;&nbsp;<b>[langs.transnoentitiesnoconv(WSAssociatedTasks)]</b></td>
 			</tr>
 			<tr style="background-color:#dedede;">
-				<th align="left" width="10%">&nbsp;&nbsp;Tâche</th>
-				<th align="left" width="30%">&nbsp;&nbsp;Description</th>
-				<th align="center" width="5%">&nbsp;&nbsp;Action</th>
+				<th align="left" width="10%">&nbsp;&nbsp;[langs.transnoentitiesnoconv(WSTask)]</th>
+				<th align="left" width="30%">&nbsp;&nbsp;[langs.transnoentitiesnoconv(Description)]</th>
+				<th align="center" width="5%">&nbsp;&nbsp;[langs.transnoentitiesnoconv(WSAction)]</th>
 			</tr>
 			
 			<tr style="background-color:#fff;">
@@ -105,7 +105,7 @@
 			</tr>
 			
 			<tr>
-				<td colspan="4" align="center">[wst;block=tr;nodata]Aucune tâche associée</td>
+				<td colspan="4" align="center">[wst;block=tr;nodata][langs.transnoentitiesnoconv(WSNoTaskAssociated)]</td>
 			</tr>
 		</table>	
 	</div>
@@ -114,7 +114,7 @@
 [onshow;block=begin;when [view.mode]!='edit']
 	<div class="tabsAction">
 		[onshow;block=begin;when [view.conf_defined_task]==1]
-			<a href="?id=[ws.id]&action=editTask" class="butAction">Ajouter une tâche</a>
+			<a href="?id=[ws.id]&action=editTask" class="butAction">[langs.transnoentitiesnoconv(WSAddTask)]</a>
 		[onshow;block=end]
 	</div>
 [onshow;block=end]	
